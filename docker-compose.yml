@@ -1,0 +1,13 @@
+services:
+  ubuntu2204:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    volumes:
+      - .:/module  # Mounts the current directory to /module in the container
+    environment:
+      - BAZELISK_VERSION=7.2.1  # Example Bazel version; adjust as necessary
+    command: >
+      bash -c "
+        bazel build //:vsg"
